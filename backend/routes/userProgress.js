@@ -1,20 +1,14 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
-const UserProgress = require('../models/User_Progress'); // MongoDB model for user progress
+const UserProgress = require('../models/User_Progress'); 
 const authMiddleware = require('../middleWare/authMiddleware');
-
-// Get user progress for a specific roadmap
-router.get('/users/:userId/progress/:roadmapId', authMiddleware,async (req, res) => {
+router.get('/users/:userId/progress/:roadmapId', authMiddleware, async (req, res) => {
     try {
         const { userId, roadmapId } = req.params;
-
-        // Verify user is requesting their own data or is admi
-        if (req.user.id !== userId && !req.user.isAdmin) {
+        if (req.user.id !== userId) {
             return res.status(403).json({ message: "Not authorized to access this data" });
         }
-
-        // Find user progress for the specified roadmap
         const userProgress = await UserProgress.findOne({
             userId,
             roadmapId
@@ -27,7 +21,6 @@ router.get('/users/:userId/progress/:roadmapId', authMiddleware,async (req, res)
                 completedLectures: {}
             });
         }
-
         return res.json(userProgress);
 
     } catch (error) {
@@ -35,8 +28,6 @@ router.get('/users/:userId/progress/:roadmapId', authMiddleware,async (req, res)
         res.status(500).json({ message: 'Server error' });
     }
 });
-
-// Update user progress
 router.post('/users/progress/update', async (req, res) => {
     try {
         const { userId, roadmapId, lectureId, stepId, isCompleted } = req.body;
@@ -45,7 +36,7 @@ router.post('/users/progress/update', async (req, res) => {
             return res.status(400).json({ message: "Missing required fields" });
         }
 
-        let userProgress = await UserProgress.findOne({ 
+        let userProgress = await UserProgress.findOne({
             userId: mongoose.Types.ObjectId.isValid(userId) ? new mongoose.Types.ObjectId(userId) : userId,
             roadmapId: roadmapId.toString()
         });
@@ -57,8 +48,6 @@ router.post('/users/progress/update', async (req, res) => {
                 completedLectures: new Map()
             });
         }
-
-        // ✅ Convert lectureId to string before storing it in Map
         const lectureIdStr = lectureId.toString();
 
         if (isCompleted) {

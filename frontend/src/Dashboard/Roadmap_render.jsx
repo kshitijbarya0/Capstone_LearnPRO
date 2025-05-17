@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const RoadmapItem = ({ roadmap, index, userId }) => {
+const RoadmapItem = ({ roadmap, userId }) => {
     const [expandedSteps, setExpandedSteps] = useState(() => {
         const initialState = {};
         if (roadmap.steps && roadmap.steps.length > 0) {
@@ -15,20 +15,20 @@ const RoadmapItem = ({ roadmap, index, userId }) => {
     const [currentVideo, setCurrentVideo] = useState(null);
     const [completedLectures, setCompletedLectures] = useState({});
     const [isSaving, setIsSaving] = useState(false);
-
     useEffect(() => {
         const fetchUserCompletionData = async () => {
-            const token = localStorage.getItem("token");
-
+            const token = JSON.parse(localStorage.getItem("token"));
             if (!token) {
                 console.error("No token found, user is not authenticated.");
                 return;
             }
 
             try {
+                // https://learnpro-hx3l.onrender.com
                 // http://localhost:4001/api/users/${userId}/progress/${roadmap.id}
+                const url = `https://learnpro-hx3l.onrender.com/api/users/${userId}/progress/${roadmap.id}`;
                 const response = await axios.get(
-                    `https://learnpro-hx3l.onrender.com/api/users/${userId}/progress/${roadmap.id}`,
+                    url,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -38,24 +38,18 @@ const RoadmapItem = ({ roadmap, index, userId }) => {
 
                 if (response.data && response.data.completedLectures) {
                     const formattedCompletedLectures = {};
+
                     roadmap.steps.forEach(step => {
                         formattedCompletedLectures[step.id] = {};
-                        if (response.data.completedLectures[step.id]) {
-                            step.lectures.forEach(lecture => {
-                                formattedCompletedLectures[step.id][lecture.id] = true;
-                            });
-                        }
+                        step.lectures.forEach(lecture => {
+                            formattedCompletedLectures[step.id][lecture.id] = !!response.data.completedLectures[lecture.id];
+                        });
                     });
 
                     setCompletedLectures(formattedCompletedLectures);
                 }
             } catch (error) {
                 console.error("Failed to fetch user progress:", error);
-
-                if (error.response?.status === 401) {
-                    console.warn("Token expired or invalid. Logging out user...");
-                    localStorage.removeItem("token");
-                }
             }
         };
 
@@ -116,8 +110,6 @@ const RoadmapItem = ({ roadmap, index, userId }) => {
     };
 
     const handleVideoClick = (lecture) => {
-        console.log("Video icon clicked", lecture);
-
         if (!lecture || !lecture.resources) {
             console.error("No resources found for this lecture");
             return;
@@ -154,37 +146,46 @@ const RoadmapItem = ({ roadmap, index, userId }) => {
             console.error("Could not extract YouTube info from URL:", videoUrl);
         }
     };
+
     const toggleLanguage = () => {
         setLanguage(prevLang => prevLang === "english" ? "hindi" : "english");
     };
+
     const closeVideo = (e) => {
         if (e) e.stopPropagation();
         setCurrentVideo(null);
     };
+
     const handleOutsideClick = (e) => {
         if (e.target.className === 'video-modal') {
             closeVideo();
         }
     };
+
     const isLectureCompleted = (lectureId, stepId) => {
         if (!completedLectures) return false;
-        if (!completedLectures[stepId] || typeof completedLectures[stepId] !== 'object') {
-            return false;
-        }
+        if (!completedLectures[stepId]) return false;
         return !!completedLectures[stepId][lectureId];
     };
+
     const toggleLectureCompletion = async (lectureId, stepId, isCompleted) => {
         try {
             setIsSaving(true);
             setCompletedLectures(prevState => {
                 const newState = { ...prevState };
-                if (!newState[stepId] || typeof newState[stepId] !== 'object') {
+                if (!newState[stepId]) {
                     newState[stepId] = {};
                 }
                 newState[stepId][lectureId] = isCompleted;
-
                 return newState;
             });
+
+            const token = JSON.parse(localStorage.getItem("token"));
+            if (!token) {
+                console.error("No token found, user is not authenticated.");
+                return;
+            }
+
             const completionData = {
                 userId,
                 roadmapId: roadmap.id,
@@ -192,13 +193,31 @@ const RoadmapItem = ({ roadmap, index, userId }) => {
                 lectureId,
                 isCompleted
             };
-            await axios.post('https://learnpro-hx3l.onrender.com/api/users/progress/update', completionData);
+            // https://learnpro-hx3l.onrender.com
+            // http://localhost:4001/api/users/progress/update
+            const response = await axios.post('https://learnpro-hx3l.onrender.com/api/users/progress/update',
+                completionData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                }
+            );
         } catch (error) {
-            console.error("Failed to update completion status:", error);
+            setCompletedLectures(prevState => {
+                const newState = { ...prevState };
+                if (!newState[stepId]) {
+                    newState[stepId] = {};
+                }
+                newState[stepId][lectureId] = !isCompleted;
+                return newState;
+            });
         } finally {
             setIsSaving(false);
         }
     };
+
     const calculateStepStats = (stepId) => {
         const step = roadmap.steps.find(s => s.id === stepId);
         if (!step) return { completed: 0, total: 0 };
@@ -215,6 +234,7 @@ const RoadmapItem = ({ roadmap, index, userId }) => {
 
         return { completed, total };
     };
+
     const calculateRoadmapStats = () => {
         let completed = 0;
         let total = 0;
@@ -230,6 +250,7 @@ const RoadmapItem = ({ roadmap, index, userId }) => {
 
         return { completed, total };
     };
+
     const roadmapStats = calculateRoadmapStats();
 
     return (

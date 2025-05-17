@@ -12,7 +12,7 @@ const UserProgressSchema = new mongoose.Schema({
     },
     completedLectures: {
         type: Map,
-        of: mongoose.Schema.Types.Mixed, // This allows for storing both boolean and objects
+        of: mongoose.Schema.Types.Mixed, 
         default: {}
     },
     lastUpdated: {

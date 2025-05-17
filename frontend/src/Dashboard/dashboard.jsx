@@ -30,7 +30,7 @@ const Dashboard = () => {
     try {
       // https://learnpro-hx3l.onrender.com/api/user/${dataType}
       // http://localhost:4001/api/user/${dataType}
-      const response = await axios.get(`ttps://learnpro-hx3l.onrender.com/api/user/${dataType}`);
+      const response = await axios.get(`https://learnpro-hx3l.onrender.com/api/user/${dataType}`);
       switch (dataType) {
         case 'videos':
           setVideos(Array.isArray(response.data) ? response.data : []);

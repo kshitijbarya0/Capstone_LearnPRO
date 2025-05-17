@@ -1,111 +1,112 @@
 const getVideos = (req, res) => {
     const videoPlaylists = [
-        {
-            id: "1",
-            title: "DSA with C++",
-            youtubePlaylistId: "PLfqMhTWNBTe0b2nM6JHVCnAkhQRGiZMSJ",
-            thumbnail: "https://img.youtube.com/vi/WQoB2z67hvY/maxresdefault.jpg",
-            duration: "40 hours"
-        },
-        {
-            id: "2",
-            title: "Computer Networks",
-            youtubePlaylistId: "PLxCzCOWd7aiGFBD2-2joCpWOLUrDLvVV_",
-            thumbnail: "https://img.youtube.com/vi/JFF2vJaN0Cw/maxresdefault.jpg",
-            duration: "25 hours"
-        },
-        {
-            id: "3",
-            title: "OOPs in Java",
-            youtubePlaylistId: "PLqleLpAMfxGCr9A4N20ZXcQvPqVVSD0v0",
-            thumbnail: "https://img.youtube.com/vi/a199KZGMNxk/maxresdefault.jpg",
-            duration: "30 hours"
-        },
-        {
-            id: "4",
-            title: "Operating Systems",
-            youtubePlaylistId: "PLxCzCOWd7aiGz9donHRrE9I3Mwn6XdP8p",
-            thumbnail: "https://img.youtube.com/vi/vBURTt97EkA/maxresdefault.jpg",
-            duration: "35 hours"
-        },
-        {
-            id: "5",
-            title: "Database Management Systems",
-            youtubePlaylistId: "PLxCzCOWd7aiFAN6I8CuViBuCdJgiOkT2Y",
-            thumbnail: "https://img.youtube.com/vi/kBdlM6hNDAE/maxresdefault.jpg",
-            duration: "28 hours"
-        },
-        {
-            id: "6",
-            title: "System Design for Interviews",
-            youtubePlaylistId: "PLMCXHnjXnTnvo6alSjVkgxV-VH6EPyvoX",
-            thumbnail: "https://img.youtube.com/vi/FSR1s2b-l_I/maxresdefault.jpg",
-            duration: "20 hours"
-        },
-        {
-            id: "7",
-            title: "Competitive Programming",
-            youtubePlaylistId: "PLauivoElc3ggagradg8MfOZreCMmXMmJ-",
-            thumbnail: "https://img.youtube.com/vi/zLcNwcR6yxQ/maxresdefault.jpg",
-            duration: "50 hours"
-        },
-        {
-            id: "8",
-            title: "Computer Architecture",
-            youtubePlaylistId: "PLxCzCOWd7aiHMonh3G6QNKq53C6oNXGrX",
-            thumbnail: "https://img.youtube.com/vi/1BUCc7p2JKk/maxresdefault.jpg",
-            duration: "15 hours"
-        },
-        {
-            id: "9",
-            title: "Aptitude & Logical Reasoning",
-            youtubePlaylistId: "PLpyc33gOcbVADMKqylI__O_O_RMeHTyNK",
-            thumbnail: "https://img.youtube.com/vi/MgaqnHWvBxE/maxresdefault.jpg",
-            duration: "22 hours"
-        },
-        {
-            id: "10",
-            title: "Programming Interview Questions",
-            youtubePlaylistId: "PLi9RQVmJD2fYXgBAUfaN5MXgYPUTbzqeb",
-            thumbnail: "https://img.youtube.com/vi/il_t1WVLNxk/maxresdefault.jpg",
-            duration: "35 hours"
-        },
-        {
-            id: "11",
-            title: "Project Building for Resume",
-            youtubePlaylistId: "PLu0W_9lII9agx66oZnT6IyhcMIbUMNMdt",
-            thumbnail: "https://img.youtube.com/vi/fis26HvvDII/maxresdefault.jpg",
-            duration: "30 hours"
-        },
-        {
-            id: "12",
-            title: "Mock Interviews & HR Preparation",
-            youtubePlaylistId: "PLqkLaKRbfoMIJwJ4IJiy0gciO355xWx4Z",
-            thumbnail: "https://img.youtube.com/vi/ji3wQ0Kj9ME/maxresdefault.jpg",
-            duration: "18 hours"
-        },
-        {
-            id: "13",
-            title: "Advanced Data Structures",
-            youtubePlaylistId: "PLdo5W4Nhv31bbKJzrsKfMpo_grxuLl8LU",
-            thumbnail: "https://img.youtube.com/vi/IpunjDw2U_o/maxresdefault.jpg",
-            duration: "25 hours"
-        },
-        {
-            id: "14",
-            title: "Core Computer Science Concepts",
-            youtubePlaylistId: "PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx",
-            thumbnail: "https://img.youtube.com/vi/z-EtmaFJieY/maxresdefault.jpg",
-            duration: "45 hours"
-        },
-        {
-            id: "15",
-            title: "Big Data & Cloud Computing",
-            youtubePlaylistId: "PLkz1SCf5iB4dw3jbRo0SYCk2urRESUA4D",
-            thumbnail: "https://img.youtube.com/vi/8N2_Ee11xQY/maxresdefault.jpg",
-            duration: "32 hours"
-        }
-    ];
+  {
+    id: "1",
+    title: "DSA with C++",
+    youtubePlaylistId: "https://www.youtube.com/watch?v=WQoB2z67hvY&list=PLDzeHZWIZsTryvtXdMr6rPh4IDexB5NIA",
+    thumbnail: "https://img.youtube.com/vi/WQoB2z67hvY/maxresdefault.jpg",
+    duration: "40 hours"
+  },
+  {
+    id: "2",
+    title: "Computer Networks",
+    youtubePlaylistId: "https://www.youtube.com/c/PracticalNetworking",
+    thumbnail: "https://img.youtube.com/vi/JFF2vJaN0Cw/maxresdefault.jpg",
+    duration: "25 hours"
+  },
+  {
+    id: "3",
+    title: "OOPs in Java",
+    youtubePlaylistId: "https://www.youtube.com/playlist?list=PL9gnSGHSqcno1G3XjUbwzXHL8_EttOuKk",
+    thumbnail: "https://img.youtube.com/vi/a199KZGMNxk/maxresdefault.jpg",
+    duration: "30 hours"
+  },
+  {
+    id: "4",
+    title: "Operating Systems",
+    youtubePlaylistId: "https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O",
+    thumbnail: "https://img.youtube.com/vi/vBURTt97EkA/maxresdefault.jpg",
+    duration: "35 hours"
+  },
+  {
+    id: "5",
+    title: "Database Management Systems",
+    youtubePlaylistId: "https://www.youtube.com/playlist?list=PLBlnK6fEyqRiyryTrbKHX1Sh9luYI0dhX",
+    thumbnail: "https://img.youtube.com/vi/kBdlM6hNDAE/maxresdefault.jpg",
+    duration: "28 hours"
+  },
+  {
+    id: "6",
+    title: "System Design for Interviews",
+    youtubePlaylistId: "https://www.youtube.com/playlist?list=PLMCXHnjXnTnvo6alSjVkgxV-VH6EPyvoX",
+    thumbnail: "https://img.youtube.com/vi/FSR1s2b-l_I/maxresdefault.jpg",
+    duration: "20 hours"
+  },
+  {
+    id: "7",
+    title: "Competitive Programming",
+    youtubePlaylistId: "https://www.youtube.com/playlist?list=PL6tQsxnnBiDieFMTItZTYVczapSU7ifTe",
+    thumbnail: "https://img.youtube.com/vi/zLcNwcR6yxQ/maxresdefault.jpg",
+    duration: "50 hours"
+  },
+  {
+    id: "8",
+    title: "Computer Architecture",
+    youtubePlaylistId: "https://www.youtube.com/channel/UCnoYy1k6I5gLIxhlNiStrdQ",
+    thumbnail: "https://img.youtube.com/vi/1BUCc7p2JKk/maxresdefault.jpg",
+    duration: "15 hours"
+  },
+  {
+    id: "9",
+    title: "Aptitude & Logical Reasoning",
+    youtubePlaylistId: "https://www.youtube.com/channel/UCjDHKp8AGNucJmEBMCk0NGg",
+    thumbnail: "https://img.youtube.com/vi/MgaqnHWvBxE/maxresdefault.jpg",
+    duration: "22 hours"
+  },
+  {
+    id: "10",
+    title: "Programming Interview Questions",
+    youtubePlaylistId: "https://www.youtube.com/playlist?list=PLfBJlB6T2eOshO8-LYaMt-Pes1IFojJ_l",
+    thumbnail: "https://img.youtube.com/vi/il_t1WVLNxk/maxresdefault.jpg",
+    duration: "35 hours"
+  },
+  {
+    id: "11",
+    title: "Project Building for Resume",
+    youtubePlaylistId: "https://www.youtube.com/watch?v=1tHFB5rDz-Y",
+    thumbnail: "https://img.youtube.com/vi/fis26HvvDII/maxresdefault.jpg",
+    duration: "30 hours"
+  },
+  {
+    id: "12",
+    title: "Mock Interviews & HR Preparation",
+    youtubePlaylistId: "https://www.youtube.com/c/JeffHSipe",
+    thumbnail: "https://img.youtube.com/vi/ji3wQ0Kj9ME/maxresdefault.jpg",
+    duration: "18 hours"
+  },
+  {
+    id: "13",
+    title: "Advanced Data Structures",
+    youtubePlaylistId: "https://www.youtube.com/playlist?list=PLdo5W4Nhv31bbKJzrsKfMpo_grxuLl8LU",
+    thumbnail: "https://img.youtube.com/vi/IpunjDw2U_o/maxresdefault.jpg",
+    duration: "25 hours"
+  },
+  {
+    id: "14",
+    title: "Core Computer Science Concepts",
+    youtubePlaylistId: "https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo",
+    thumbnail: "https://img.youtube.com/vi/z-EtmaFJieY/maxresdefault.jpg",
+    duration: "45 hours"
+  },
+  {
+    id: "15",
+    title: "Big Data & Cloud Computing",
+    youtubePlaylistId: "https://www.youtube.com/@AlexTheAnalyst",
+    thumbnail: "https://img.youtube.com/vi/8N2_Ee11xQY/maxresdefault.jpg",
+    duration: "32 hours"
+  }
+];
+
 
     res.json(videoPlaylists);
 };

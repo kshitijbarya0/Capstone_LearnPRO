@@ -8,7 +8,7 @@ const mongoose = require('./service/db');
 const app = express();
 app.use(cors({
     // https://learnpro-edu-rv.netlify.app
-    origin: "http://localhost:5173",
+    origin: "https://learnpro-edu-rv.netlify.app",
     credentials: true, // Allow cookies
 }));
 app.use(express.json());

@@ -76,7 +76,7 @@ const Dashboard = () => {
               videos.map((video, index) => (
                 <div key={video.id || index} className="grid-item">
                   <a
-                    href={`https://www.youtube.com/watch?v=${video.youtubePlaylistId}`}
+                    href={video.youtubePlaylistId}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="videolistlink"
